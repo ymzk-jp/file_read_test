@@ -1,0 +1,3 @@
+is read this file?
+really?
+日本語も大丈夫ですか？
