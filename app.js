@@ -2,9 +2,9 @@ const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
 const files = require('./lib/files');
-const inquirer  = require('./lib/inquirer');
 const Configstore = require('configstore');
 const conf = new Configstore('ginit');
+const inquirer = require("inquirer");
 
 clear();
 console.log(
@@ -20,9 +20,17 @@ if (files.directoryExists('.git')) {
     process.exit();
 }
 
-const run = async () => {
-  const credentials = await inquirer.askGithubCredentials();
-  console.log(credentials);
-}
-
-run();
+const myQuestion = {
+    "type": "list",
+    "name": "myQuestion1",
+    "message": "choice mood",
+    "choices": ["good", "sad"]
+};
+const myQuestion2 = {
+    "type": "input",
+    "name": "myQuestion2",
+    "message": "もうう少し詳しく教えて下さい。"
+};
+inquirer.prompt([myQuestion, myQuestion2], (answer) => {
+    console.log("answer:" + answer.myQuestion1, answer.myQuestion2);
+});
